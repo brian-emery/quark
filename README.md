@@ -26,3 +26,6 @@ today's date. The posts will be sorted (descending) by date.
 * Add pagination.
 * Properly sort posts within a single day.
 
+### Screenshot:
+
+![screenshot](http://i.imgur.com/ut0PnPO.png)
