@@ -1,0 +1,7 @@
+# Edit the items below to meet your needs
+
+[config]
+
+BLOG_TITLE = My Blog
+AUTHOR = John Smith
+PORT = 5000
