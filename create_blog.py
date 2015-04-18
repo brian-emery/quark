@@ -9,7 +9,6 @@ from datetime import date
 
 app = Flask(__name__)
 
-# Read the config file
 parser = SafeConfigParser()
 parser.read('config.txt')
 posts = "posts"
@@ -23,14 +22,12 @@ def index():
 
     post_list = []
     html_list = []
-    
-    # Find files with md/txt file extensions and add them to the post_list
+
     for post in os.listdir(posts):
         if post.endswith(".txt") or post.endswith(".md"):
             post_path = os.path.join(posts, post)
             post_list.append(post_path)
-    
-    # Process each post on the post_list
+
     for post in post_list:
         the_file = read_file(post)
         the_html = md_to_html(the_file)

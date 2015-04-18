@@ -29,13 +29,11 @@
         <p>Written by: {{ the_author }}</p>
     </div>
     {% for post in my_posts|sort(attribute='date', reverse=True) %}
-        {% for date, html in post.iteritems() %}
-            <div class="container">
-                <p>Posted: {{ post.date }}</p>
-                {{ post.html|safe }}
-                <hr>
-            </div>
-        {% endfor %}
+        <div class="container">
+            <p>Posted: {{ post.date }}</p>
+            {{ post.html|safe }}
+            <hr>
+        </div>
     {% endfor %}
     <div id="footer">
         <p>&copy;{{ year }} {{ the_author }} -- Blog created with quark.</p>
