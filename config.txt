@@ -1,7 +1,6 @@
-# Edit the items below to meet your needs
-
 [config]
 
 BLOG_TITLE = My Blog
 AUTHOR = John Smith
+POSTS_PER_PAGE = 10
 PORT = 5000

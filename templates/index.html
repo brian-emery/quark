@@ -14,7 +14,7 @@
             font-family: monospace;
             white-space: pre-wrap;
         }
-        #header, #footer {
+        #header, #footer, #controls {
             float:left;
 		    padding:15px 0;
 		    min-width:100%;
@@ -35,6 +35,13 @@
             <hr>
         </div>
     {% endfor %}
+    <div id="controls">
+        {% if page_id < 1 %}
+            <a href="{{ url_for('page', page_id = page_id+1 ) }}">Next Page</a>
+        {% else %}
+            <a href="{{ url_for('page', page_id = page_id-1 ) }}">Previous Page</a> --- <a href="{{ url_for('page', page_id = page_id+1 ) }}">Next Page</a>
+        {% endif %}
+    </div>
     <div id="footer">
         <p>&copy;{{ year }} {{ the_author }} -- Blog created with quark.</p>
     </div>

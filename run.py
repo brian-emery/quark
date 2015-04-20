@@ -6,8 +6,6 @@ from tornado.ioloop import IOLoop
 from create_blog import app
 from ConfigParser import SafeConfigParser
 
-# Creates a simple http server
-
 parser = SafeConfigParser()
 parser.read('config.txt')
 lport = parser.get('config', 'PORT')
