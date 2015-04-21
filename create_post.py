@@ -5,6 +5,7 @@ import markdown
 import os
 from datetime import datetime
 
+todays_date = datetime.today().strftime('%Y-%m-%d')
 
 def read_file(the_file):
     input_file = codecs.open(the_file, mode="r", encoding="utf-8")
@@ -21,12 +22,15 @@ def get_file_date(the_file, the_date):
     if validate(the_date):
         return the_date
     else:
-        the_day = datetime.today().strftime('%Y-%m-%d')
-        path, filename = os.path.split(the_file)
-        mod_filename = the_day + "_" + filename
-        new_file = os.path.join(path, mod_filename)
-        os.rename(the_file, new_file)
-        return the_day
+        rename_file(the_file)
+        return todays_date
+
+
+def rename_file(the_file):
+    path, filename = os.path.split(the_file)
+    mod_filename = todays_date + "_" + filename
+    new_file = os.path.join(path, mod_filename)
+    os.rename(the_file, new_file)
 
 
 def validate(date_text):
