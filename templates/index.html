@@ -13,7 +13,7 @@
         <a href="{{ url_for('page', page_id = page_id+1) }}">Next Page</a>
     {% elif next_page %}
         <a href="{{ url_for('page', page_id = page_id-1) }}">Previous Page</a> --- <a href="{{ url_for('page', page_id = page_id+1) }}">Next Page</a>
-    % else %}
+    {% else %}
         <a href="{{ url_for('page', page_id = page_id-1) }}">Previous Page</a>
     {% endif %}
 </div>
