@@ -4,3 +4,8 @@ BLOG_TITLE = My Blog
 AUTHOR = John Smith
 POSTS_PER_PAGE = 10
 PORT = 5000
+
+[style]
+
+TEXT_COLOR = black
+BACKGROUND_COLOR = white

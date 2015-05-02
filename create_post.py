@@ -7,6 +7,7 @@ from datetime import datetime
 
 todays_date = datetime.today().strftime('%Y-%m-%d')
 
+
 def read_file(the_file):
     input_file = codecs.open(the_file, mode="r", encoding="utf-8")
     text = input_file.read()

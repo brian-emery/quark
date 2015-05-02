@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ my_title }}</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+        body {
+            background: {{ back_color }}
+        }
+        .container {
+            max-width: 800px;
+            padding-top: 100px;
+            background: {{ back_color }};
+            color: {{ text_color }};
+        }
+        code {
+            max-width: 800px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        #header, #footer, #controls {
+            float:left;
+		    padding:15px 0;
+		    min-width:100%;
+            text-align: center;
+            font-family: monospace;
+            color: {{ text_color }}
+	    }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>{{ my_title }}</h1>
+        <p>Written by: {{ the_author }}</p>
+    </div>
+    {% block body %}{% endblock %}
+    <div id="footer">
+        <p>&copy;{{ year }} {{ the_author }} -- Blog created with <a href="https://github.com/brian-emery/quark">quark</a>.</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

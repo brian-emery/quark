@@ -1,53 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ my_title }}</title>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <style type="text/css">
-        .container {
-            max-width: 800px;
-            padding-top: 100px;
-        }
-        code {
-            max-width: 800px;
-            font-family: monospace;
-            white-space: pre-wrap;
-        }
-        #header, #footer, #controls {
-            float:left;
-		    padding:15px 0;
-		    min-width:100%;
-            text-align: center;
-            font-family: monospace;
-	    }
-    </style>
-</head>
-<body>
-    <div id="header">
-        <h1>{{ my_title }}</h1>
-        <p>Written by: {{ the_author }}</p>
-    </div>
-    {% for post in my_posts %}
-        <div class="container">
-            <p>Posted: {{ post.date }}</p>
+{% extends "base.html" %}
+{% block body %}
+{% for post in my_posts %}
+    <div class="container">
+        <p>Posted: {{ post.date }}</p>
+        <p><a href="{{ url_for('perma_link', string = post.link) }}">Permanent Link</a></p>
             {{ post.html|safe }}
             <hr>
-        </div>
-    {% endfor %}
-    <div id="controls">
-        {% if page_id < 1 %}
-            <a href="{{ url_for('page', page_id = page_id+1 ) }}">Next Page</a>
-        {% elif next_page %}
-            <a href="{{ url_for('page', page_id = page_id-1 ) }}">Previous Page</a> --- <a href="{{ url_for('page', page_id = page_id+1 ) }}">Next Page</a>
-        {% else %}
-            <a href="{{ url_for('page', page_id = page_id-1 ) }}">Previous Page</a>
-        {% endif %}
     </div>
-    <div id="footer">
-        <p>&copy;{{ year }} {{ the_author }} -- Blog created with <a href="https://github.com/brian-emery/quark">quark</a>.</p>
-    </div>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endfor %}
+<div id="controls">
+    {% if page_id < 1 %}
+        <a href="{{ url_for('page', page_id = page_id+1) }}">Next Page</a>
+    {% elif next_page %}
+        <a href="{{ url_for('page', page_id = page_id-1) }}">Previous Page</a> --- <a href="{{ url_for('page', page_id = page_id+1) }}">Next Page</a>
+    % else %}
+        <a href="{{ url_for('page', page_id = page_id-1) }}">Previous Page</a>
+    {% endif %}
+</div>
+{% endblock %}
