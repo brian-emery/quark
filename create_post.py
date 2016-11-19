@@ -1,5 +1,3 @@
-__author__ = 'brian-emery'
-
 import codecs
 import markdown
 import os

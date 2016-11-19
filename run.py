@@ -1,5 +1,3 @@
-__author__ = 'brian-emery'
-
 from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop

@@ -12,19 +12,19 @@ jQuery, and Bootstrap.
 
 ### Using quark
 
-Any .txt or .md files dropped into the 'posts' directory will be added to the
+Any .md file dropped into the 'posts' directory will be added to the
 post list. quark expects these files to be written in markdown. If you want
 the post to have a specific date, prepend it to the filename. For example:
 
-`2015-04-13_my_first_post.txt`
+`2015-04-13_my_first_post.md`
 
 If you do not specify a date in the filename, quark will rename the file with
 today's date. The posts will be sorted (descending) by date.
 
 ### To Do:
 
-* Add pagination.
 * Properly sort posts within a single day.
+* Install as a service.
 
 ### Screenshot:
 

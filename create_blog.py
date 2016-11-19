@@ -1,9 +1,6 @@
-__author__ = 'brian-emery'
-
-import base64
 import os
 import re
-from flask import Flask, render_template, redirect, url_for, abort
+from flask import Flask, render_template, redirect, url_for
 from create_post import read_file, md_to_html, get_file_date
 from ConfigParser import SafeConfigParser
 from datetime import date, datetime
@@ -20,7 +17,7 @@ text_color = parser.get('style', 'TEXT_COLOR')
 back_color = parser.get('style', 'BACKGROUND_COLOR')
 the_year = date.today().year
 time_format = "%Y-%m-%d"
-regex = re.compile("^([0-9]{4}\-[0-9]{2}\-[0-9]{2})")
+regex = re.compile("^([0-9]{4}-[0-9]{2}-[0-9]{2})")
 
 
 def gettimestamp(the_file):
@@ -34,7 +31,7 @@ def create_post_list(page_id):
     sorted_post_list = []
 
     for post in os.listdir(posts):
-        if post.endswith(".txt") or post.endswith(".md"):
+        if post.endswith(".md"):
             post_path = os.path.join(posts, post)
             filename = os.path.basename(post)
             find_date = regex.match(filename)
@@ -63,7 +60,7 @@ def generate_page(page_id):
     html_list = []
 
     for post in post_list:
-        link = base64.urlsafe_b64encode(post.encode("utf-8"))
+        link = os.path.splitext(os.path.basename(post))[0]
         the_file = read_file(post)
         the_html = md_to_html(the_file)
         filename = os.path.basename(post)
@@ -71,15 +68,6 @@ def generate_page(page_id):
         final = {"date": post_date, "html": the_html, "link": link}
         html_list.append(final)
     return html_list
-
-
-def single_post(path):
-    decoded_path = base64.urlsafe_b64decode(path.encode("ascii"))
-    if os.path.isfile(decoded_path):
-        return decoded_path
-    else:
-        return None
-
 
 
 @app.route("/")
@@ -104,10 +92,11 @@ def page(page_id):
                            next_page=next_page, text_color=text_color,
                            back_color=back_color)
 
+
 @app.route('/post/<string>')
 def perma_link(string):
 
-    post = single_post(string)
+    post = posts + "/" + string + ".md"
     html_list = []
     if post is not None:
         the_file = read_file(post)
@@ -119,4 +108,3 @@ def perma_link(string):
     return render_template('post.html', my_title=the_title, the_author=author,
                            my_posts=html_list, year=the_year, text_color=text_color,
                            back_color=back_color)
-
