@@ -1,6 +1,6 @@
 import os
 import re
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, abort
 from create_post import read_file, md_to_html, get_file_date
 from ConfigParser import SafeConfigParser
 from datetime import date, datetime
@@ -98,13 +98,15 @@ def perma_link(string):
 
     post = posts + "/" + string + ".md"
     html_list = []
-    if post is not None:
+    if post is not None and os.path.isfile(post):
         the_file = read_file(post)
         the_html = md_to_html(the_file)
         filename = os.path.basename(post)
         post_date = get_file_date(post, filename[0:10])
         final = {"date": post_date, "html": the_html}
         html_list.append(final)
-    return render_template('post.html', my_title=the_title, the_author=author,
+        return render_template('post.html', my_title=the_title, the_author=author,
                            my_posts=html_list, year=the_year, text_color=text_color,
                            back_color=back_color)
+    else:
+        abort(404)
