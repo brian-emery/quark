@@ -19,6 +19,9 @@
             font-family: monospace;
             white-space: pre-wrap;
         }
+        input {
+            max-width: 200px;
+        }
         #header, #footer, #controls {
             float:left;
 		    padding:15px 0;
@@ -32,10 +35,12 @@
 <body>
     <div id="header">
         <h1>{{ my_title }}</h1>
+        <p><b><i>{{ subtitle }}</i></b></p>
         <p>Written by: {{ the_author }}</p>
     </div>
     {% block body %}{% endblock %}
     <div id="footer">
+        <p><form action="{{ url_for('search', page_id = 0) }}" method="post"><input name="search" placeholder="Search" autocomplete="off" type="text"></form></p>
         <p>&copy;{{ year }} {{ the_author }} -- Blog created with <a href="https://github.com/brian-emery/quark">quark</a>.</p>
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

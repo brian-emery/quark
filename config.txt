@@ -1,6 +1,7 @@
 [config]
 
 BLOG_TITLE = My Blog
+SUBTITLE = The Subtitle
 AUTHOR = John Smith
 POSTS_PER_PAGE = 10
 PORT = 5000
