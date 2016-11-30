@@ -9,7 +9,9 @@
     </div>
 {% endfor %}
 <div id="controls">
-    {% if page_id < 1 %}
+    {% if not next_page and page_id == 0 %}
+        ---
+    {% elif page_id == 0 %}
         <a href="{{ url_for('page', page_id = page_id+1) }}">Next Page</a>
     {% elif next_page %}
         <a href="{{ url_for('page', page_id = page_id-1) }}">Previous Page</a> --- <a href="{{ url_for('page', page_id = page_id+1) }}">Next Page</a>

@@ -77,15 +77,12 @@ def generate_page(page_id, query):
 
 @app.route("/")
 def index():
-    page_id = 0
-    return redirect(url_for('page', page_id=page_id))
+    return redirect(url_for('page', page_id=0))
 
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    query = request.form['search']
-    page_id = 0
-    html_list = generate_page(page_id, query)
+    html_list = generate_page(page_id=0, query=request.form['search'])
 
     return render_template('search.html', my_title=the_title, subtitle=subtitle, the_author=author,
                            my_posts=html_list, year=the_year, text_color=text_color,
@@ -100,8 +97,7 @@ def page(page_id):
     next_page = True
 
     if list_length < 1:
-        page_id = 0
-        return redirect(url_for('page', page_id=page_id))
+        return redirect(url_for('page', page_id=0))
     if list_length < posts_per_page:
         next_page = False
     return render_template('index.html', my_title=the_title, subtitle=subtitle, the_author=author,
@@ -112,7 +108,6 @@ def page(page_id):
 
 @app.route('/post/<string>')
 def perma_link(string):
-
     post = posts + "/" + string + ".md"
     html_list = []
     if post is not None and os.path.isfile(post):
@@ -120,7 +115,7 @@ def perma_link(string):
         the_html = md_to_html(the_file)
         filename = os.path.basename(post)
         post_date = get_file_date(post, filename[0:10])
-        final = {"date": post_date, "html": the_html}
+        final = {"date": post_date, "html": the_html, "id": filename[:-3]}
         html_list.append(final)
         return render_template('post.html', my_title=the_title, subtitle=subtitle, the_author=author,
                                my_posts=html_list, year=the_year, text_color=text_color,
