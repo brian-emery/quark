@@ -21,6 +21,11 @@ the post to have a specific date, prepend it to the filename. For example:
 If you do not specify a date in the filename, quark will rename the file with
 today's date. The posts will be sorted (descending) by date.
 
+### Misc:
+To disable logging:
+
+`python run.py --logging=none` 
+
 ### To Do:
 
 * Properly sort posts within a single day.
